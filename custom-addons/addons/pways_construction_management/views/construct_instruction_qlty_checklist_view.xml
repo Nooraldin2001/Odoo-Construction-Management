@@ -1,0 +1,56 @@
+<odoo>
+    <!-- construct_instruction_qlty_checklist_view -->
+    <record id="construct_instruction_qlty_checklist_tree_view" model="ir.ui.view">
+        <field name="name">construct.instruction.qlty.checklist.tree.view</field>
+        <field name="model">construct.instruction.qlty.checklist</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="construct_instruction_qlty_checklist_form_view" model="ir.ui.view">
+        <field name="name">construct.instruction.qlty.checklist.form.view</field>
+        <field name="model">construct.instruction.qlty.checklist</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <field name="card_instruction_type"/>
+                            <field name="task_id"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_construct_instruction" model="ir.actions.act_window">
+        <field name="name">Instruction</field>
+        <field name="res_model">construct.instruction.qlty.checklist</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_card_instruction_type':'instruction'}</field>
+        <field name="domain">[('card_instruction_type','=','instruction')]</field>
+    </record>
+
+    <record id="action_view_construct_qlty_checklist" model="ir.actions.act_window">
+        <field name="name">Quality Checklist</field>
+        <field name="res_model">construct.instruction.qlty.checklist</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_card_instruction_type':'qlty_checklist'}</field>
+        <field name="domain">[('card_instruction_type','=','qlty_checklist')]</field>
+    </record>
+
+</odoo>

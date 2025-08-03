@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- construct_daily_log_report -->
+<odoo>
+  <data>
+
+   <record id="construct_daily_log_report_action" model="ir.actions.report">
+        <field name="name">Construction Daily Logs Report</field>
+        <field name="model">construct.daily.logs</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pways_construction_management.construct_daily_log_report</field>
+        <field name="report_file">pways_construction_management.construct_daily_log_report</field>
+        <field name="binding_model_id" ref="model_construct_daily_logs"/>
+        <field name="binding_type">report</field>
+    </record>
+   
+   
+    <template id="construct_daily_log_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <div style="text-align: center;">
+                            <h3><span t-field="doc.display_name"/></h3>
+                        </div>
+                        <br/>
+                        <div>
+                            <table class="table table-responsive">
+                                <tr style="border: 2px solid black;">
+                                   <td><strong>Employee</strong></td><td> <span t-field="doc.employee_id.display_name"/></td>
+                                   <td><strong>User</strong></td><td> <span t-field="doc.user_id.display_name"/></td>
+                               </tr>
+                               <tr style="border: 2px solid black;">
+                                   <td><strong>Project </strong></td><td> <span t-field="doc.project_id.display_name"/></td>
+                                   <td><strong>Department </strong></td><td> <span t-field="doc.department_id.display_name"/></td>
+                               </tr>
+                               <tr style="border: 2px solid black;">
+                                   <td><strong>Analytic Account</strong></td><td> <span t-field="doc.analytic_account_id.name"/></td>
+                                   <td><strong>Cost Estimation No.</strong></td><td> <span t-field="doc.job_costing_id.display_name"/></td>
+                               </tr>
+                               <tr style="border: 2px solid black;">
+                                   <td><strong>Manager</strong></td><td> <span t-field="doc.parent_id.display_name"/></td>
+                                   <td><strong>Date</strong></td><td> <span t-field="doc.date"/></td>
+                               </tr>
+                            </table>
+                        </div>
+                        <br/>
+                            <strong><h3>Job Orders</h3></strong>
+                            <br/>
+                            <table class="table table-responsive">
+                                <tr style="border: 2px solid black;">
+                                    <td><strong>Title</strong></td>
+                                    <td><strong>Project</strong></td>
+                                    <td><strong>Assignees</strong></td>
+                                    <td><strong>Company</strong></td>
+                                    <td><strong>Initially Planned Hours</strong></td>
+                                    <td><strong>Effective Hours</strong></td>
+                                    <td><strong>Remaining Hours</strong></td>
+                                    <td><strong>Stage</strong></td>
+                                </tr>
+                                <t t-set="total_planned_hours" t-value="0" />
+                                <t t-set="total_effective_hours" t-value="0" />
+                                <t t-set="total_remaining_hours" t-value="0" />
+                                <t t-foreach="doc.task_ids" t-as="line">
+                                    <tr style="border: 2px solid grey;">
+                                        <td><span t-field="line.name"/></td>
+                                        <td><span t-field="line.project_id.display_name"/></td>
+                                        <td>
+                                            <t t-foreach="line.user_ids" t-as="user">
+                                                <span t-field="user.name"/>,<br/>
+                                            </t>
+                                        </td>
+                                        <td><span t-esc="line.company_id.display_name"/></td>
+                                        <td class="text-right"><span t-esc="line.planned_hours"/></td>
+                                        <td class="text-right"><span t-esc="line.effective_hours"/></td>
+                                        <td class="text-right"><span t-esc="line.remaining_hours"/></td>
+                                        <td class="text-right"><span t-esc="line.stage_id.display_name"/></td>
+                                    </tr>
+                                    <t t-set="total_planned_hours" t-value="total_planned_hours + line.planned_hours" />
+                                    <t t-set="total_effective_hours" t-value="total_effective_hours + line.effective_hours" />
+                                    <t t-set="total_remaining_hours" t-value="total_remaining_hours + line.remaining_hours" />
+                                </t>
+                                <tr style="border: 2px solid grey;">
+                                    <td colspan="4" class="text-right"><strong>Total:</strong></td>
+                                    <td class="text-right"><strong><span t-esc="total_planned_hours"/></strong></td>
+                                    <td class="text-right"><strong><span t-esc="total_effective_hours"/></strong></td>
+                                    <td class="text-right"><strong><span t-esc="total_remaining_hours"/></strong></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        <br/>
+                        <div>
+                            <strong>Construction Daily Logs</strong>
+                            <br/>
+                            <span t-field="doc.cnstrct_daily_logs"/>
+                        </div>
+                        <br/>
+                        <div>
+                            <strong>Subcontractors</strong>
+                            <br/>
+                            <span t-field="doc.cnstrct_subcontractors"/>
+                        </div>
+                        <br/>
+                        <div>
+                            <strong>Activities</strong>
+                            <br/>
+                            <span t-field="doc.cnstrct_activities"/>
+                        </div>
+                        <br/>
+                        <div>
+                            <strong>Test/Inspection</strong>
+                            <br/>
+                            <span t-field="doc.cnstrct_test"/>
+                        </div>
+                        <br/>
+                        <div>
+                            <strong>Eqquipment</strong>
+                            <br/>
+                            <span t-field="doc.cnstrct_eqquipment"/>
+                        </div>
+                        <br/>
+                        <div>
+                            <strong>Material Delivries</strong>
+                            <br/>
+                            <span t-field="doc.cnstrct_material_delivery"/>
+                        </div>
+                        <br/>
+                        <div>
+                            <strong>Visitors</strong>
+                            <br/>
+                            <span t-field="doc.cnstrct_visitors"/>
+                        </div>
+                        <br/>
+                        <div>
+                            <strong>Notes</strong>
+                            <br/>
+                            <span t-field="doc.cnstrct_notes"/>
+                        </div>
+                        <br/>
+                        <div style="text-align: right;">
+                            <strong>Authorize Signature:______________</strong>
+                            <br/>
+                            <strong>Date:___/___/_____</strong>
+                            <br/>
+                        </div>
+                        <br/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    </data>
+</odoo>
+

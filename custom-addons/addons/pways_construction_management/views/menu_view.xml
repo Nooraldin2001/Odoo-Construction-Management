@@ -1,0 +1,222 @@
+<odoo>
+    <data>
+
+        <menuitem id="menu_job_managmt" 
+            web_icon="odoo_job_costing_management,static/description/icon.png" 
+            name="Construction Management" 
+            groups="project.group_project_user"
+            />
+
+        <!-- Dashboard -->
+        <record id="action_construct_dashboard" model="ir.actions.client">
+            <field name="name">Construction</field>
+            <field name="tag">construct_dashboard</field>
+        </record>
+
+        <menuitem 
+            name="Dashboard" 
+            id="menu_construct_dashboard" 
+            parent="pways_construction_management.menu_job_managmt"
+            sequence="0" 
+            action="action_construct_dashboard"
+            />
+
+        <!-- project -->
+        <menuitem id="menu_job_cost_project" 
+            parent="menu_job_managmt" 
+            name="Projects" 
+            sequence="1"/>
+
+        <menuitem id="menu_job_projects"
+            name="Projects" 
+            parent="menu_job_cost_project" 
+            action="pways_construction_management.open_view_project_job_all_config" 
+            sequence="1" />
+
+        <menuitem id="notes_job_project_menu" 
+            parent="menu_job_cost_project" 
+            name="Project's Notes" 
+            action="action_project_note_note" 
+            sequence="5"/>
+
+
+        <!-- Costing -->
+        <menuitem id="menu_job_cost_managmt" 
+            parent="menu_job_managmt"
+            name="Costing" 
+            sequence="5" 
+            groups="project.group_project_manager"/>
+            
+        <menuitem id="menu_sub_job_costing" 
+            parent="pways_construction_management.menu_job_cost_managmt" 
+            name="Cost Estimation" 
+            action="pways_construction_management.action_job_costing" 
+            sequence="1"/>
+        
+        <menuitem id="account_analytic_def_account" 
+            parent="menu_job_cost_managmt"
+            name="Cost Center" 
+            action="analytic.action_account_analytic_account_form" 
+            groups="analytic.group_analytic_accounting" 
+            sequence="5"/>
+
+        <menuitem id="menu_sub_maintenance" 
+            parent="pways_construction_management.menu_job_cost_managmt"
+            name="Maintenance" 
+            sequence="10"
+            action="maintenance.hr_equipment_request_action"/>
+
+        <menuitem id="menu_analytic_lines_cnstrct" 
+            parent="menu_job_cost_managmt"
+            name="Labours Sheets" 
+            action="pways_construction_management.analytic_line_action_entries_etx" 
+            groups="analytic.group_analytic_accounting" 
+            sequence="15"/>
+    
+        <menuitem
+            id="menu_vehicle_equipment_request"
+            name="Vehicle Equipment Request"
+            action="pways_construction_management.action_view_vehicle_equipment_request"
+            parent="pways_construction_management.menu_job_cost_managmt"
+            sequence="20"/>
+
+        <!-- Job orders -->
+        <menuitem id="menu_job_cost_orders" 
+            parent="menu_job_managmt"
+            name="Job Orders" 
+            sequence="10"/>
+        
+        <menuitem id="menu_job_cost_order"
+            name="Job Orders" 
+            parent="menu_job_cost_orders" 
+            action="pways_construction_management.action_view_job_orders" 
+            sequence="1" />
+
+        <menuitem id="notes_job_cost_task_menu" 
+            parent="menu_job_cost_orders" 
+            name="Job Order's Notes" 
+            action="action_task_note_note" 
+            sequence="2"/>
+
+        <!-- Contracting -->
+        <menuitem id="job_cost_sub_contractors" 
+            parent="menu_job_managmt"
+            name="Contracting" 
+            sequence="15"/>
+
+        <menuitem id="menu_item_contractors"
+            name="Sub Contractors" 
+            parent="job_cost_sub_contractors" 
+            action="pways_construction_management.action_partner_contractor_form" 
+            sequence="7"/>
+        
+        <!-- Contracting -->
+        <menuitem id="menu_materials" 
+            parent="menu_job_managmt"
+            name="Materials" 
+            sequence="20"/>
+
+        <menuitem id="menu_purchase_requisition" 
+            name="Purchase" 
+            parent="pways_construction_management.menu_materials" 
+            action="pways_construction_management.action_material_purchase_requisition" 
+            sequence="15" />
+
+        <menuitem id="menu_int_pick_requisition" 
+            name="Internal Picking" 
+            parent="pways_construction_management.menu_materials" 
+            action="pways_construction_management.action_material_int_pick_requisition" 
+            sequence="20" />
+
+        <menuitem id="menu_scrap_requisition" 
+            name="Scrap" 
+            parent="pways_construction_management.menu_materials" 
+            action="pways_construction_management.action_material_scrap_requisition" 
+            sequence="25" />
+        
+        <menuitem id="menu_job_cost_material"
+            name="Materials" 
+            parent="menu_materials" 
+            action="product.product_normal_action" 
+            sequence="30" />
+        
+        <!-- Compliance -->
+        <menuitem id="menu_compliance" 
+            parent="menu_job_managmt"
+            name="Compliance" 
+            sequence="25"/>
+
+        <menuitem id="construct_inspector_sub_menu" 
+            name="Inspections" 
+            parent="pways_construction_management.menu_compliance"
+            action="pways_construction_management.action_view_construct_inspector"
+            sequence="5"/> 
+
+        <menuitem id="construct_compliance_sub_menu" 
+            name="Compliance" 
+            parent="pways_construction_management.menu_compliance"
+            action="pways_construction_management.action_view_construct_compliance"
+            sequence="10"/> 
+
+        <!-- Configuration -->
+        <menuitem id="menu_job_cost_configuration" 
+            parent="menu_job_managmt"
+            name="Configuration" 
+            groups="project.group_project_manager" 
+            sequence="50"/>
+
+        <menuitem id="menu_stages"
+            name="Job Orders Stages" 
+            parent="menu_job_cost_configuration" 
+            action="project.open_task_type_form" 
+            sequence="1"/>
+
+        <menuitem id="menu_job_type" 
+            parent="pways_construction_management.menu_job_cost_configuration" 
+            name="Job Types" 
+            action="pways_construction_management.action_job_type" 
+            sequence="2"/>
+
+        <menuitem id="menu_construct_process"
+            name="Construction Process"
+            action="pways_construction_management.action_view_construct_process"
+            parent="pways_construction_management.menu_job_cost_configuration"
+            sequence="3"/>
+
+        <menuitem id="menu_construct_cycles"
+            name="Construction Cycles"
+            action="pways_construction_management.action_view_construct_cycle"
+            parent="pways_construction_management.menu_job_cost_configuration"
+            sequence="5"/>
+
+        <menuitem name="Construct Compliance Tags"
+            id="menu_construct_compliance_tags"
+            parent="pways_construction_management.menu_job_cost_configuration"
+            action="pways_construction_management.action_construct_compliance_tags"
+            sequence="10"/>
+
+        <menuitem
+            id="menu_construction_daily_logs"
+            name="Construction Daily Logs"
+            action="pways_construction_management.action_view_construction_daily_logs"
+            parent="pways_construction_management.menu_job_cost_configuration"
+            sequence="11"
+            />
+
+        <menuitem
+            id="menu_construct_instruction"
+            name="Instruction"
+            action="pways_construction_management.action_view_construct_instruction"
+            parent="pways_construction_management.menu_job_cost_configuration"
+            sequence="12"
+            />
+
+        <menuitem
+            id="menu_construct_qlty_checklist"
+            name="Quality Checklist"
+            action="pways_construction_management.action_view_construct_qlty_checklist"
+            parent="pways_construction_management.menu_job_cost_configuration"
+            sequence="13"/>
+
+    </data>
+</odoo>

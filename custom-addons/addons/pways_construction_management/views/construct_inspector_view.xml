@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="construct_inspector_tree_view" model="ir.ui.view">
+        <field name="name">construct.inspector.tree.view</field>
+        <field name="model">construct.inspector</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="inspector_id"/>
+                <field name="date"/>
+            </tree>
+        </field>
+    </record>
+    <record id="construct_inspector_form_view" model="ir.ui.view">
+        <field name="name">construct.inspector.form.view</field>
+        <field name="model">construct.inspector</field>
+        <field name="arch" type="xml">
+            <form string="inspector">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                    <button name="action_done" string="Submit" class="btn-primary" type="object" states='draft'/>
+                    <button name="action_cancel" string="Cancel" class="btn-primary" type="object" states='draft, done'/>
+                    <button name="action_reset" string="Reset to Draft" class="btn-primary" type="object" states='cancel'/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/><br/>
+                            </h1>
+                        </div>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="inspector_id"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="project_id"/>
+                            <field name="task_id" domain="[('project_id', '=', project_id)]"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description" name="description">
+                            <field name="description"/>
+                        </page>
+                        <page string="Documents" name="documents">
+                            <field name="attachment_ids" widget="many2many_binary"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="action_view_construct_inspector" model="ir.actions.act_window">
+        <field name="name">Inspection</field>
+        <field name="res_model">construct.inspector</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

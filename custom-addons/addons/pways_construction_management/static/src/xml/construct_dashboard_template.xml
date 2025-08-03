@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="construct_dashboard_template" xml:space="preserve">
+    <t t-name="ConstructionDashboard">
+        <section class="section construct_dashboard" style="margin-left: 175px;">
+            <div class="main_container" style="">
+                <div class="mt-4 container-1 property_dashboard">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4 col-sm-12 mb-4 job_costing">
+                            <div class="m-1 card">
+                                <div class="sub_card"  style="background-color:rgb(242, 204, 255);padding : 5px;">
+                                        <div class="text-center">
+                                            <div class="d-flex flex-column">
+                                            <span class="svg-icon svg-icon-general svg-icon-muted svg-icon-2hx">
+                                               <img width="45" height="40" src="https://img.icons8.com/dotty/80/google-sheets.png" alt="google-sheets"/>
+                                            </span>
+                                            <span class="text-dark fw-bolder fs-2" id="job_costing_count">0</span>
+                                            <span class="text-dark fw-bolder mt-1">Cost Sheets</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 col-sm-12 mb-4 projects">
+                            <div class="m-1 card">
+                                <div class="sub_card"  style="background-color:rgb(255, 242, 204);padding : 5px;">
+                                        <div class="text-center">
+                                            <div class="d-flex flex-column">
+                                            <span class="svg-icon svg-icon-general svg-icon-muted svg-icon-2hx">
+                                                <img width="45" height="40" src="https://img.icons8.com/dotty/80/group-of-projects.png" alt="Projects"/>                                     
+                                            </span>
+                                            <span class="text-dark fw-bolder fs-2" id="projects_count">0</span>
+                                            <span class="text-dark fw-bolder mt-1">Projects</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4 col-sm-12 mb-4 tasks">
+                            <div class="m-1 card">
+                                <div class="sub_card" style="background-color: rgb(204, 255, 204);padding : 5px;">
+                                    <div class="text-center">
+                                          <div class="d-flex flex-column">
+                                        <span class="svg-icon svg-icon-general svg-icon-muted svg-icon-2hx">
+                                            <img width="45" height="40" src="https://img.icons8.com/ios-filled/100/tasks.png" alt="Tasks"/>
+                                        </span>
+                                        <span class="text-dark fw-bolder fs-2" id="tasks_count">0</span>
+                                        <span class="text-dark fw-bolder mt-1">Tasks</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 col-sm-12 mb-4 contractors">
+                            <div class="m-1 card">
+                                <div class="sub_card" style="background-color: rgb(204, 242, 255);padding : 5px;">
+                                    <div class='text-center'>
+                                        <div class="d-flex flex-column">
+                                            <span class="svg-icon svg-icon-general svg-icon-muted svg-icon-2hx">
+                                                <img width="45" height="40" src="https://img.icons8.com/external-flaticons-flat-flat-icons/64/external-farmer-professions-men-diversity-flaticons-flat-flat-icons-2.png" alt="external-farmer-professions-men-diversity-flaticons-flat-flat-icons-2"/>
+                                            </span>
+                                            <span class="text-dark fw-bolder fs-2" id="contractors_count">0</span>
+                                            <span class="text-dark fw-bolder mt-1">Contractors</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-2 property_dashboard">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4 col-sm-12 mb-4 bills">
+                            <div class="m-1 card">
+                                <div class="sub_card"  style="background-color:rgb(242, 204, 255);padding : 3px;">
+                                        <div class="text-center">
+                                            <div class="d-flex flex-column">
+                                            <span class="svg-icon svg-icon-general svg-icon-muted svg-icon-2hx">
+                                                <img width="45" height="40" src="https://img.icons8.com/dusk/64/check.png" alt="Bills"/>                                      
+                                            </span>
+                                            <span class="text-dark fw-bolder fs-2" id="bills_count">0</span>
+                                            <span class="text-dark fw-bolder mt-1">Bills</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 col-sm-12 mb-4 picking">
+                            <div class="m-1 card">
+                                <div class="sub_card"  style="background-color:rgb(255, 242, 204);padding : 3px;">
+                                    <div class="text-center">
+                                        <div class="d-flex flex-column">
+                                            <span class="svg-icon svg-icon-general svg-icon-muted svg-icon-2hx">
+                                                <img width="45" height="40" src="https://img.icons8.com/dusk/64/in-transit.png" alt="Picking"/>
+                                            </span>
+                                            <span class="text-dark fw-bolder fs-2" id="picking_count">0</span>
+                                            <span class="text-dark fw-bolder mt-1">Picking</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4 col-sm-12 mb-4 inspection">
+                            <div class="m-1 card">
+                                <div class="sub_card" style="background-color: rgb(204, 255, 204);padding : 3px;">
+                                    <div class='text-center'>
+                                        <div class="d-flex flex-column">
+                                            <span class="svg-icon svg-icon-general svg-icon-muted svg-icon-2hx">
+                                                <img width="45" height="40" src="https://img.icons8.com/dusk/64/inspection.png" alt="Inspection"/>
+                                            </span>
+                                            <span class="text-dark fw-bolder fs-2" id="inspection_count">0</span>
+                                            <span class="text-dark fw-bolder mt-1">Inspection</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 col-sm-12 mb-4 compliance">
+                            <div class="m-1 card">
+                                <div class="sub_card" style="background-color: rgb(204, 242, 255);padding : 3px;">
+                                    <div class='text-center'>
+                                        <div class="d-flex flex-column">
+                                            <span class="svg-icon svg-icon-general svg-icon-muted svg-icon-2hx">
+                                                <img width="45" height="40" src="https://img.icons8.com/fluency/64/test-passed.png" alt="test-passed"/>
+                                            </span>
+                                            <span class="text-dark fw-bolder fs-2" id="compliance_count">0</span>
+                                            <span class="text-dark fw-bolder mt-1">Compliance</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-3 property_dashboard">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4 col-sm-12 mb-4 material">
+                            <div class="m-1 card">
+                                <div class="sub_card"  style="background-color:rgb(242, 204, 255);padding : 3px;">
+                                        <div class="text-center">
+                                            <div class="d-flex flex-column">
+                                            <span class="svg-icon svg-icon-general svg-icon-muted svg-icon-2hx">
+                                                <img width="45" height="40" src="https://img.icons8.com/fluency/48/construction-materials.png" alt="construction-materials"/>
+                                            </span>
+                                            <span class="text-dark fw-bolder fs-2" id="materials_count">0</span>
+                                            <span class="text-dark fw-bolder mt-1">Materials</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 col-sm-12 mb-4 scrap_requisition">
+                            <div class="m-1 card">
+                                <div class="sub_card"  style="background-color:rgb(255, 242, 204);padding : 3px;">
+                                    <div class='text-center'>
+                                        <div class="d-flex flex-column">
+                                            <span class="svg-icon svg-icon-general svg-icon-muted svg-icon-2hx">
+                                                <img width="45" height="40" src="https://img.icons8.com/external-filled-outline-geotatah/44/external-disposal-reverse-logistics-filled-outline-filled-outline-geotatah.png" alt="disposal"/>
+                                            </span>
+                                            <span class="text-dark fw-bolder fs-2" id="scraps_count">0</span>
+                                            <span class="text-dark fw-bolder mt-1">Scraps</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4 col-sm-12 mb-4 internal_requisition">
+                            <div class="m-1 card">
+                                <div class="sub_card" style="background-color: rgb(204, 255, 204);padding : 3px;">
+                                    <div class='text-center'>
+                                        <div class="d-flex flex-column">
+                                            <span class="svg-icon svg-icon-general svg-icon-muted svg-icon-2hx">
+                                                <img width="45" height="40" src="https://img.icons8.com/dusk/64/in-transit.png" alt="Picking"/>
+                                            </span>
+                                            <span class="text-dark fw-bolder fs-2" id="in_picking_count">0</span>
+                                            <span class="text-dark fw-bolder mt-1">Internal Pickings</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 col-sm-12 mb-4 scrap_requisition">
+                            <div class="m-1 card">
+                                <div class="sub_card" style="background-color: rgb(204, 242, 255);padding : 3px;">
+                                    <div class="text-center">
+                                        <div class="d-flex flex-column">
+                                            <span class="svg-icon svg-icon-general svg-icon-muted svg-icon-2hx">
+                                                <img width="45" height="40" src="https://img.icons8.com/external-others-pike-picture/45/external-Purchase-Requisition-procurement-others-pike-picture.png" alt="Purchase-Requisition"/>
+                                            </span>
+                                            <span class="text-dark fw-bolder fs-2" id="purchase_count">0</span>
+                                            <span class="text-dark fw-bolder mt-1">Purchase Requisition</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid" style="width:900px">
+                <div class="row">
+                    <!-- First Column -->
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-12 mt-4">
+                                <div class="card-shadow" style="height:380px; border-radius: 20px;">
+                                    <h3 class="text-center"><b>Project Status</b></h3>
+                                    <hr/>
+                                    <div class="ml-1" id="project_state_chart" style="width: 410px; height: 360px;margin: -40px 0 0 -100px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mt-2">
+                                <div class="card-shadow" style="border-radius: 20px;">
+                                    <h3 class="text-center"><b>Task Status</b></h3>
+                                    <hr/>
+                                    <div id="task_stage_chart" style="width: 450px; height: 350px; margin: -40px 0 0 -100px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Second Column -->
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-12 mt-4">
+                                <div class="card-shadow" style="height:380px; border-radius: 20px;">
+                                    <h3 class="text-center"><b>Yearly Invoice</b></h3>
+                                    <hr/>
+                                    <div class="ml-1" id="project_invocie_yearly" style="width: 700px; height: 300px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mt-2">
+                                <div class="card-shadow" style="border-radius: 20px; margin-left:30px;">
+                                    <h3 class="text-center"><b>Cost Type</b></h3>
+                                    <hr/>
+                                    <div id="cost_type_estimated_amount_yearly" style="width: 620px; height: 250px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </t>
+</templates>

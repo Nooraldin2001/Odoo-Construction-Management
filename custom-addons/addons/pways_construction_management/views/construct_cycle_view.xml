@@ -1,0 +1,40 @@
+<odoo>
+
+    <record id="construct_cycle_tree_view" model="ir.ui.view">
+        <field name="name">construct.cycle.tree.view</field>
+        <field name="model">construct.cycle</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="process_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="construct_cycle_form_view" model="ir.ui.view">
+        <field name="name">construct.cycle.form.view</field>
+        <field name="model">construct.cycle</field>
+        <field name="arch" type="xml">
+            <form string="Cycles">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" required="1"/>
+                        </group>
+                        <group>
+                            <field name="process_ids" required="1" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_view_construct_cycle" model="ir.actions.act_window">
+        <field name="name">Construction Cycles</field>
+        <field name="res_model">construct.cycle</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

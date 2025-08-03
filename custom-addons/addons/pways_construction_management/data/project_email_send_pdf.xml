@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="email_template_send_project_details" model="mail.template">
+            <field name="name">Cunstruction</field>
+            <field name="email_from"></field>
+            <field name="email_to"></field>
+            <field name="subject">Cunstruction Detais</field>
+            <field name="model_id" ref="model_project_project"/>   
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html" type="html">
+                <div class="page">
+                    <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                        <p>Hi,</p>
+                        <p><t t-out="object.description"/></p>
+                    </div>
+                </div>
+            </field>
+        </record>
+
+        <!-- Construction Daily Logs -->
+        <record id="email_temp_construct_daily_logs" model="mail.template">
+            <field name="name">Construction Daily Logs Report</field>
+            <field name="email_from">"{{object.user_id.email}}&gt;</field>
+            <field name="email_to">{{ctx.get('email_to')}}</field>
+            <field name="subject">Construction Daily Logs</field>
+            <field name="model_id" ref="model_construct_daily_logs"/>   
+            <field name="report_template" ref="pways_construction_management.construct_daily_log_report_action"/>
+            <field name="report_name">Construction Daily Logs: - {{ object.name }} </field>
+            <field name="body_html" type="html">
+                <div class="page">
+                    <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                        <p>Hi,</p>
+                        <br/>
+                        <p>See below you get Construction Daily Logs Report for <strong><t t-out="object.date"/></strong>.</p>
+                        <br/>
+                        <p>Thank you,</p>
+                        <p><t t-out="object.user_id.name"/></p>
+                    </div>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

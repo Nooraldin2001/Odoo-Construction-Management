@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <!-- product -->
+        <record id="product_normal_form_view_inherit_boq_type" model="ir.ui.view">
+            <field name="name">product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <field name="categ_id" position="after">
+                    <field name="boq_type"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- sale -->
+        <record id="construct_sale_view_form_inherited" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="payment_term_id" position="after">
+                    <field name="project_id" string="Project" readonly="0"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- equipment -->
+        <record id="hr_equipment_view_form_inherited" model="ir.ui.view">
+            <field name="name">maintenance.equipment.form</field>
+            <field name="model">maintenance.equipment</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+            <field name="arch" type="xml">
+                <field name="location" position="after">
+                    <field name="product_id"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- expense -->
+        <record id="hr_expense_view_form_inherited" model="ir.ui.view">
+            <field name="name">hr.expense.form</field>
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.hr_expense_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr = "//field[@name='company_id'][@groups='base.group_multi_company']" position="after">
+                    <field name="project_id"/>
+                    <field name="task_id" domain="[('project_id', '=', project_id)]"/>
+                    <field name="job_cost_id" domain="[('project_id', '=', project_id)]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- expense sheet-->
+        <record id="hr_expense_sheet_view_form_inherited" model="ir.ui.view">
+            <field name="name">hr.expense.sheetform</field>
+            <field name="model">hr.expense.sheet</field>
+            <field name="inherit_id" ref="hr_expense.view_hr_expense_sheet_form"/>
+            <field name="arch" type="xml">
+                <xpath expr = "//field[@name='user_id']" position="after">
+                    <field name="project_id"/>
+                    <field name="task_id" domain="[('project_id', '=', project_id)]"/>
+                    <field name="job_cost_id" domain="[('project_id', '=', project_id)]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- department -->
+        <record id="purchase_requisition_department_form_view" model="ir.ui.view">
+            <field name="name">hr.department.form.view</field>
+            <field name="model">hr.department</field>
+            <field name="inherit_id" ref="hr.view_department_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='parent_id']" position="after">
+                    <field name="dest_location_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- employee -->
+        <record id="purchase_requisition_employee_form_view" model="ir.ui.view">
+            <field name="name">hr.employee.form.view</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[last()]" position="after">
+                     <page name="purchase_settings" string="Purchase Requisition Settings">
+                        <group>
+                            <group>
+                                <field name="dest_location_id"/>
+                            </group>
+                        </group>
+                     </page>
+                </xpath>
+                <xpath expr="//group/field[@name='tz']" position="after">
+                    <field name="salary_period"/>
+                    <field name="price_per_time"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

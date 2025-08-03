@@ -1,0 +1,41 @@
+<odoo>
+    
+    <record id="view_timesheet_bill_wizard_form" model="ir.ui.view">
+        <field name="name">timesheet.bill.wizard.form</field>
+        <field name="model">timesheet.bill.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="timesheet_bill_wiz_lines" nolabel="1" width="100">
+                    <tree editable="bottom" width='100'>
+                        <field name="product_id" string="Product"/>
+                        <field name="name" string="Name"/>
+                        <field name="date" string="Date"/>
+                        <field name="amount" string="Amount"/>
+                        <field name="unit_amount" string="Quantity"/>
+                        <field name="partner_id" string="Partner"/>
+                        <field name="product_uom_id" string="UOM"/>
+                        <field name="timesheet_bill_wiz_id" string="Ref" invisible="1"/>
+                        <field name="account_analytic_line_id" string="Account Analytic" invisible="1"/>
+                        <field name="job_cost_id" invisible="1"/>
+                        <field name="task_id" invisible="1"/>
+                        <field name="project_id" string="Project" invisible='1'/>
+                    </tree>
+                </field>
+                <footer>
+                    <button name="create_bill_timesheet"  type="object"  string="Create Bill" default_focus="1" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_timesheet_bill_wizard" model="ir.actions.act_window">
+        <field name="name">Timesheet Bill Wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">timesheet.bill.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>           
+        <field name="binding_model_id" ref="model_account_analytic_line"/>
+        <field name="binding_view_types">list</field>
+    </record>
+</odoo>

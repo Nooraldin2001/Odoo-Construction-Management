@@ -1,0 +1,30 @@
+<odoo>
+    <record id="action_expense_xls_rprt" model="ir.actions.server">
+        <field name="name">Expense XLS Report</field>
+        <field name="model_id" ref="model_project_project"/>
+        <field name="binding_model_id" ref="model_project_project"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = model.action_expense_xls_rprt()
+        </field>
+    </record>
+    
+    <record id="project_read_wizard_action" model="ir.actions.act_window">
+        <field name="name">Share Readonly</field>
+        <field name="res_model">project.share.wizard</field>
+        <field name="binding_model_id" ref="model_project_project"/>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_access_mode': 'read'}</field>
+    </record>
+
+    <record id="project_edit_wizard_action" model="ir.actions.act_window">
+        <field name="name">Share Editable</field>
+        <field name="res_model">project.share.wizard</field>
+        <field name="binding_model_id" ref="model_project_project"/>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_access_mode': 'edit'}</field>
+    </record>
+
+</odoo>

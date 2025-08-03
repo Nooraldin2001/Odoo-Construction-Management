@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!--tree-->
+    <record id="construct_compliance_tags_form_view" model="ir.ui.view">
+        <field name="name">construct_compliance_tags_form_view</field>
+        <field name="model">construct.compliance.tags</field>
+        <field name="arch" type="xml">
+            <tree string="Tags" editable="bottom">
+                <field name="name"/>
+                <field name="color" widget="color_picker" string="Color Code"/>
+            </tree>
+        </field>
+    </record>
+
+  <!--Action-->
+    <record id="action_construct_compliance_tags" model="ir.actions.act_window">
+        <field name="name">Construct Compliance Tags</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">construct.compliance.tags</field>
+        <field name="view_mode">tree</field>
+    </record>
+</odoo>

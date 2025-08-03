@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="construct_compliance_tree_view" model="ir.ui.view">
+        <field name="name">construct.compliance.tree.view</field>
+        <field name="model">construct.compliance</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="user_id" string="User"/>
+                <field name="project_id" string="Projects"/>
+                <field name="task_id" string="Task" domain="[('project_id', '=', project_id)]"/>
+            </tree>
+        </field>
+    </record>
+    <record id="construct_compliance_form_view" model="ir.ui.view">
+        <field name="name">construct.compliance.form.view</field>
+        <field name="model">construct.compliance</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"/>
+                    <button name="action_draft" string="Reset to Draft" class="btn-primary" type="object" states='cancel'/>
+                    <button name="action_confirm" string="Confirm" class="btn-primary" type="object" states='draft'/>
+                    <button name="action_approve" string="Approve" class="btn-primary" type="object" states='confirm'/>
+                    <button name="action_submit" string="Submit" class="btn-primary" type="object" states='approve'/>
+                    <button name="action_done" string="Approved By Govt." class="btn-primary" type="object" states='submit'/>
+                    <button name="action_cancel" string="Cancel" class="btn-primary" type="object" states='draft, done'/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/><br/>
+                            </h1>
+                        </div>
+                    </div>
+                    <group>
+                        <group string="Complaint Details">
+                            <field name="user_id" string="User"/>
+                            <field name="project_id" string="Projects"/>
+                            <field name="task_id" string="Task" domain="[('project_id', '=', project_id)]"/>
+                            <field name="cnstrct_cmpln_tags_ids" string="Construct compliance Tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                        </group>
+                        <group string="Site Measurement">
+                            <field name="site_name" string="Site Title"/>
+                            <field name="site_length" string="Site Length"/>
+                            <field name="site_width" string="Site Width"/>
+                            <field name="site_area" string="Site Area"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description" name="description">
+                            <field name="description"/>
+                        </page>
+                        <page string="Documents" name="documents">
+                            <field name="attachment_ids" widget="many2many_binary"/>
+                        </page>
+                        <page string="Process Dates" name="dates">
+                            <group>
+                                <group>
+                                    <field name="confirm_date" string="Confirm date" readonly="1"/>
+                                    <field name="approval_date" string="Approval date" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="submit_date" string="Submit date" readonly="1"/>
+                                    <field name="aprv_govt_date" string="Approval Date By Govt." readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_construct_compliance" model="ir.actions.act_window">
+        <field name="name">Compliance</field>
+        <field name="res_model">construct.compliance</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

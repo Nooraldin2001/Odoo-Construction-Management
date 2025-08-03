@@ -1,0 +1,72 @@
+<odoo>
+    <record id="construct_process_tree_view" model="ir.ui.view">
+        <field name="name">construct.process.tree.view</field>
+        <field name="model">construct.process</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="hours" />
+            </tree>
+        </field>
+    </record>
+    <record id="construct_process_form_view" model="ir.ui.view">
+        <field name="name">construct.process.form.view</field>
+        <field name="model">construct.process</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"  required='1'/>
+                        <field name="hours" />
+                    </group>
+                    <group>
+                        <field name="description" />
+                    </group>
+                    <notebook>
+                        <page string="Material">
+                            <field name="prces_material_ids">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="qty"/>
+                                    <field name="uom_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Equipment">
+                            <field name="equipment_ids"/>
+                            <!-- <field name="construct_equipment_ids">
+                                <tree editable="bottom">
+                                    <field name="equipment_id"/>
+                                    <field name="qty"/>
+                                    <field name="price"/>
+                                </tree>
+                            </field> -->
+                        </page>
+                        <page string="Fleet">
+                            <field name="fleet_ids"/>
+                            <!-- <field name="construct_fleet_ids">
+                                <tree editable="bottom">
+                                    <field name="vehicle_id"/>
+                                    <field name="qty"/>
+                                    <field name="price"/>
+                                </tree>
+                            </field> -->
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_view_construct_process" model="ir.actions.act_window">
+        <field name="name">Construction Process</field>
+        <field name="res_model">construct.process</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

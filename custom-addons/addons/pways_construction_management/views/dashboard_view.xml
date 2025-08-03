@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+        
+        <!-- 
+        <menuitem id="menu_job_managmt" 
+            web_icon="odoo_job_costing_management,static/description/icon.png" 
+            name="Construction Management" 
+            groups="project.group_project_user"/>
+             -->
+
+        <record id="action_construct_dashboard" model="ir.actions.client">
+            <field name="name">Construction</field>
+            <field name="tag">construct_dashboard</field>
+        </record>
+
+        <menuitem 
+            name="Dashboard" 
+            id="menu_construct_dashboard" 
+            parent="pways_construction_management.menu_job_managmt"
+            sequence="0" 
+            action="action_construct_dashboard"
+            />
+    </data>
+</odoo>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- Groups -->
+        
+        <record id="group_purchase_requisition_user" model="res.groups">
+            <field name="name">Material Purchase Requisition User</field>
+            <field name="implied_ids" eval="[(4, ref('stock.group_stock_user'))]"/>
+        </record>
+        
+        <record id="group_purchase_requisition_manager" model="res.groups">
+            <field name="name">Material Purchase Requisition Manager</field>
+            <field name="implied_ids" eval="[(4, ref('group_purchase_requisition_user'))]"/>
+        </record>
+        
+        <record id="group_purchase_requisition_department" model="res.groups">
+            <field name="name">Material Purchase Requistion Department Manager</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+
+        <!-- category -->
+        
+        <record model="ir.module.category" id="module_category_construction">
+            <field name="name">Job Costing Contracting Managements</field>
+            <field name="sequence">3</field>
+            <field name="visible" eval="0" />
+        </record>
+
+        <!-- Rules -->
+
+        <record id="purchase_requisition_own_rule" model="ir.rule">
+            <field name="name">Employee Material Purchase Requistion Own</field>
+            <field name="model_id" ref="model_material_purchase_requisition"/>
+            <field name="domain_force">[('employee_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        
+        <record id="purchase_requisition_line_employee_rule" model="ir.rule">
+            <field name="name">Employee Material Purchase Requistion Lines</field>
+            <field name="model_id" ref="model_material_purchase_requisition_line"/>
+            <field name="domain_force">[('requisition_id.employee_id.user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        
+        <record id="purchase_requisition_all_rule" model="ir.rule">
+            <field name="name">Material Purcahse Requisitions All</field>
+            <field name="model_id" ref="model_material_purchase_requisition"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('pways_construction_management.group_purchase_requisition_user')),
+                                        (4, ref('purchase.group_purchase_user')),
+                                        (4, ref('pways_construction_management.group_purchase_requisition_department'))]"/>
+        </record>
+        
+        <record id="purchase_requisition_line_all_rule" model="ir.rule">
+            <field name="name">Material Purcahse Requisitions Line All</field>
+            <field name="model_id" ref="model_material_purchase_requisition_line"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4, ref('pways_construction_management.group_purchase_requisition_user')),
+                                        (4, ref('purchase.group_purchase_user')),
+                                        (4, ref('pways_construction_management.group_purchase_requisition_department'))]"/>
+        </record>
+        
+
+        <record model="ir.rule" id="custom_job_costing_comp_rule">
+            <field name="name">Job Costing multi-company</field>
+            <field name="model_id" ref="model_job_costing"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record model="ir.rule" id="custom_job_cost_line_comp_rule">
+            <field name="name">Job Cost Line multi-company</field>
+            <field name="model_id" ref="model_job_cost_line"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|', ('direct_id.company_id', '=', False), ('direct_id.company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record model="ir.rule" id="material_purchase_requisition_comp_rule">
+            <field name="name">Muterial Purchase Requisition multi-company</field>
+            <field name="model_id" ref="model_material_purchase_requisition"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id','in', company_ids)]</field>
+        </record>
+
+        <record model="ir.rule" id="material_purchase_requisition_line_comp_rule">
+            <field name="name">Muterial Purchase Requisition Line multi-company</field>
+            <field name="model_id" ref="model_material_purchase_requisition_line"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('requisition_id.company_id','=',False),('requisition_id.company_id','in',company_ids)]</field>
+        </record>
+        
+
+    </data>
+</odoo>

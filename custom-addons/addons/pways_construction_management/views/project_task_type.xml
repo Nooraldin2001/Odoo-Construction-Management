@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record model="ir.ui.view" id="project_task_type_default_stage_1">
+		<field name="name">project.task.type.default.stage</field>
+		<field name="model">project.task.type</field>
+		<field name="inherit_id" ref="project.task_type_edit"/>
+		<field name="arch" type="xml">
+			<field name="fold" position="after">
+				<field name="set_default"/>
+			</field>
+			<xpath expr="//field[@name='project_ids']" position='after'>
+                <field name="is_progress_stage"/>
+                <field name="progress_bar" attrs="{'invisible':[('is_progress_stage','!=',True)]}"/>
+            </xpath>
+		</field>
+	</record>
+</odoo>

@@ -1,0 +1,51 @@
+<odoo>
+    <record id="hr_equipment_request_view_form_extend" model="ir.ui.view">
+        <field name="name">maintenance.request.form</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='archive_equipment_request']" position="before">
+                <button string="Create Bill" type="object" name="action_create_bill" class="oe_highlight"/>
+                <button string="Create Picking" type="object" name="action_create_picking" class="oe_highlight"/>
+            </xpath>
+            <xpath expr="//div" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button name="open_bills_action" type="object" class="oe_stat_button" icon="fa-pencil-square-o">
+                        <field string="Bills" name="bill_count" widget="statinfo"/>
+                    </button>
+                    <button class="oe_stat_button" type="object" icon="fa-truck" name="open_picking_action">
+                        <field string="Delivery" name="picking_count" widget="statinfo" />
+                    </button>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='maintenance_type']" position="after">
+                <field string="Project" name="project_id"/>
+                <field string="Task" name="task_id" domain="[('project_id', '=', project_id)]"/>
+                <field string="Cost Estimation" name="job_costing_id" domain="[('project_id', '=', project_id)]"/>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Products">
+                        <form>
+                            <field name="maintenance_request_line_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="qty"/>
+                                    <field name="uom_id"/>
+                                    <field name="price"/>
+                                    <field name="sub_total"/>
+                                </tree>
+                            </field>
+                            <group>
+                                <group class="oe_subtotal_footer oe_right" colspan="2" name="maintenance_total1">
+                                    <field name="grand_total" readonly="1" string='Total'/>
+                                </group>
+                                <div class="clearfix"/>
+                            </group>
+                        </form>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>
